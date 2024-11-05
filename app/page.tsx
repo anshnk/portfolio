@@ -39,7 +39,7 @@ export default function Page() {
       <CardHeader>
         <Avatar>
           <AvatarImage src="https://github.com/anshnk.png" alt="anshnk" />
-          <AvatarFallback>JD</AvatarFallback>
+          <AvatarFallback>AN</AvatarFallback>
         </Avatar>
         <CardTitle>anshnk</CardTitle>
         <CardDescription>Pretty awesome coder</CardDescription>
