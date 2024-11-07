@@ -14,9 +14,17 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 
+import { 
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+  DropdownMenuContent
+} from "@/components/ui/dropdown-menu"
+
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/ThemeSwitch"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export default function Page() {
   const projectUrls = [
@@ -24,6 +32,8 @@ export default function Page() {
     "https://github.com/anshnk/unblockedtech",
     "https://github.com/z1g-project/ephemeral",
     "https://github.com/anshnk/Phoenix",
+    "https://github.com/anshnk/portfolio",
+    "https://github.com/anshnk/newsite"
   ];
 
   const [randomProjectUrl, setRandomProjectUrl] = useState(projectUrls[0]);
@@ -43,11 +53,26 @@ export default function Page() {
         </Avatar>
         <CardTitle>anshnk</CardTitle>
         <CardDescription>Pretty awesome coder</CardDescription>
-        <a href="mailto:ansh@anshnk.dev">
-          <Button className="w-[100px]">
-            Contact Me
-          </Button>
-        </a>
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button className="w-[100px]">
+                Contact Me
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem asChild>
+                <a href="https://discordapp.com/users/593497381820039187" target="_blank" rel="noopener noreferrer">
+                  Discord
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <a href="mailto:ansh@anshnk.dev">
+                  Email
+                </a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
       </CardHeader>
       <CardContent>
         <p>
