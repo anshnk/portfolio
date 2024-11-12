@@ -1,0 +1,66 @@
+.scrollContainer {
+    display: flex;
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.imageSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    height: 100vh;
+}
+
+.imageWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.metadataButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--primary-foreground);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .imageWrapper:hover .metadataButton {
+        display: flex;
+    }
+}
+
+@media (max-width: 767px) {
+    .metadataButton {
+        display: flex;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .desktopMetadataButton {
+        display: none;
+    }
+}
+
+.dialogContent {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border-radius: var(--radius);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
