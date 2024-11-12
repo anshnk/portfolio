@@ -2,14 +2,25 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import styles from "./PhotographyPage.module.css";
 import { Info } from "lucide-react";
+
+interface ImageMetadata {
+    location: string;
+    camera: string;
+    focalLength: string;
+    aperture: string;
+    shutterSpeed: string;
+    iso: string;
+    date: string;
+}
+
 export default function PhotographyPage() {
     const [showMetadata, setShowMetadata] = useState(false);
-    const [selectedImageMetadata, setSelectedImageMetadata] = useState(null);
+    const [selectedImageMetadata, setSelectedImageMetadata] = useState<ImageMetadata | null>(null);
 
-    const openMetadata = (metadata) => {
+    const openMetadata = (metadata: ImageMetadata) => {
         setSelectedImageMetadata(metadata);
         setShowMetadata(true);
     };
