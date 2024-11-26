@@ -1,18 +1,13 @@
 "use client"
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-
-import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
+
+import { Kings } from "next/font/google";
+
+const kings = Kings({ subsets: ["latin"], weight: ["400"] });
 
 import { 
   DropdownMenu,
@@ -25,6 +20,35 @@ import {
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/ThemeSwitch"
 import { useState } from "react"
+import { motion } from "framer-motion"
+
+const containerVariants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+      duration: 0.5,
+    },
+  },
+};
+
+const bottomVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+      duration: 0.5,
+    },
+  },
+};
 
 export default function Page() {
   const projectUrls = [
@@ -44,18 +68,43 @@ export default function Page() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-    <Card className="w-[350px] content-center justify-center">
-      <CardHeader>
-        <Avatar>
-          <AvatarImage src="https://github.com/anshnk.png" alt="anshnk" />
-          <AvatarFallback>AN</AvatarFallback>
-        </Avatar>
-        <CardTitle>anshnk</CardTitle>
-        <CardDescription>Pretty awesome coder</CardDescription>
-        <DropdownMenu>
+    <div className="flex flex-col items-center justify-center min-h-[90vh] w-full bg-base-200">
+      <div className="max-w-lg w-full px-4">
+        <motion.div
+          className="w-40 h-40 mb-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <Avatar className="w-40 h-40 mb-4 justify-start">
+            <AvatarImage src="https://github.com/anshnk.png" alt="anshnk" />
+            <AvatarFallback>AN</AvatarFallback>
+          </Avatar>
+        </motion.div>
+        <motion.div
+          className={`${kings.className} text-4xl font-bold mb-1 text-left`}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          anshnk
+        </motion.div>
+        <motion.p
+          className="text-lg mb-3 italic text-left"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          Pretty awesome coder
+        </motion.p>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="w-[100px]">
+              <Button className="w-[100px] mb-10">
                 Contact Me
               </Button>
             </DropdownMenuTrigger>
@@ -73,21 +122,27 @@ export default function Page() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-      </CardHeader>
-      <CardContent>
-        <p>
+        </motion.div>
+        <motion.p
+          className="max-w-md mb-2 text-left"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           Hey, I'm Ansh. I'm 13yrs old and I like coding. It's more of a hobby for me but I'm okay at it. This is my first submission for Hack Club High Seas.
-        </p>
-      </CardContent>
-      <CardFooter>
-        <ModeToggle />
-        <a href={randomProjectUrl} target="_blank" rel="noopener noreferrer">
-          <Button className="ml-4" onClick={handleRandomizeProject}>
+        </motion.p>
+        <motion.div
+          variants={bottomVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <ModeToggle />
+          <Button className="ml-4 mt-4" onClick={handleRandomizeProject}>
             A project I've worked on or made!
           </Button>
-        </a>
-      </CardFooter>
-    </Card>
+        </motion.div>
+        
+      </div>
     </div>
   )
 }
