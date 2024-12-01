@@ -15,6 +15,11 @@ import {
 export function ModeToggle() {
   const { setTheme } = useTheme();
 
+  const handleThemeChange = (theme: string) => {
+    setTheme(theme);
+    window.location.reload();
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,31 +30,31 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("light")}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("dark")}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("zinc")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("zinc")}>
           Zinc
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("mocha")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("mocha")}>
           Mocha
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("macchiato")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("macchiato")}>
           Macchiato
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("frappe")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("frappe")}>
           Frappe
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("latte")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("latte")}>
           Latte
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("monokai")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("monokai")}>
           Monokai
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("system")}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

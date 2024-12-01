@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import styles from "./PhotographyPage.module.css";
 import { Info } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface ImageMetadata {
     location: string;
@@ -15,6 +16,18 @@ interface ImageMetadata {
     iso: string;
     date: string;
 }
+
+const imageVariants = {
+    hidden: { opacity: 0.8, scale: 0.8 },
+    visible: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+            duration: 0.7,
+            ease: "easeOut",
+        },
+    },
+};
 
 export default function PhotographyPage() {
     const [showMetadata, setShowMetadata] = useState(false);
@@ -73,7 +86,13 @@ export default function PhotographyPage() {
         <div className={styles.scrollContainer}>
             {images.map((image, index) => (
                 <div className={styles.imageSection} key={index}>
-                    <div className={styles.imageWrapper}>
+                    <motion.div
+                        className={styles.imageWrapper}
+                        variants={imageVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: false, amount: 0.5 }}
+                    >
                         <Image
                             src={image.src}
                             width={500}
@@ -87,7 +106,7 @@ export default function PhotographyPage() {
                         >
                             <Info />
                         </Button>
-                    </div>
+                    </motion.div>
                 </div>
             ))}
 
